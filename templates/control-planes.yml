@@ -12,7 +12,7 @@ spec:
     dataPlane:
       mtls: true
   tracing:
-    sampling: {{ .Values.serviceMesh.controlPlane.sampling }}
+    sampling: {{ .Values.serviceMeshControlPlane.sampling }}
     type: Jaeger
   runtime:
     components:
