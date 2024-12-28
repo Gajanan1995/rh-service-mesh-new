@@ -16,10 +16,6 @@ serviceMesh:
     limits:
       cpu: 300m
       memory: 1Gi
-  controlPlane:
-    namespace: istio-system
-    version: v2.3
-    sampling: 100
 
 # Kiali Operator Configuration
 kiali:
