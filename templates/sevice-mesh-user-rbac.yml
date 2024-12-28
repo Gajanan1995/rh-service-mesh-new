@@ -8,10 +8,14 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "5"
 subjects:
-  {{- range $group := .Values.ado_groups }}
-  - kind: Group
-    apiGroup: rbac.authorization.k8s.io
-    name: {{ $group }}
+  {{- if .Values.ado_groups }}  # Only loop over ado_groups if it is defined and not empty
+    {{- range $group := .Values.ado_groups }}
+      - kind: Group
+        apiGroup: rbac.authorization.k8s.io
+        name: {{ $group }}
+    {{- end }}
+  {{- else }}
+    # No groups to add
   {{- end }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
