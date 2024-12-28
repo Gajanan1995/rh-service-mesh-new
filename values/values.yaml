@@ -1,0 +1,66 @@
+# Default values for rh-adp.
+# This file configures operators and resources.
+
+# Service Mesh Operator Configuration
+serviceMesh:
+  name: servicemeshoperator
+  namespace: openshift-operators-redhat
+  channel: stable
+  installPlanApproval: Manual
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace
+  proxy:
+    requests:
+      cpu: 100m
+      memory: 50Mi
+    limits:
+      cpu: 300m
+      memory: 1Gi
+  controlPlane:
+    namespace: istio-system
+    version: v2.3
+    sampling: 100
+
+# Kiali Operator Configuration
+kiali:
+  name: kiali-ossm
+  namespace: openshift-operators-redhat
+  channel: stable
+  installPlanApproval: Manual
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace
+
+# Elasticsearch Operator Configuration
+elasticSearch:
+  name: elasticsearch-operator
+  namespace: openshift-operators-redhat
+  channel: stable
+  installPlanApproval: Manual
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace
+
+# Jaeger Operator Configuration (Distributed Tracing)
+jeager:
+  name: jaeger-product
+  namespace: openshift-distributed-tracing
+  channel: stable
+  installPlanApproval: Manual
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace
+
+# ServiceMeshControlPlane Configuration for all namespaces
+serviceMeshControlPlane:
+  namespaces:
+    - web-app1
+    - web-app2
+  resources:
+    proxy:
+      requests:
+        cpu: 100m
+        memory: 50Mi
+      limits:
+        cpu: 300m
+        memory: 1Gi
+  sampling: 100
+  version: v2.3
+
