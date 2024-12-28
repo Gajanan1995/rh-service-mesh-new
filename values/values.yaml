@@ -6,7 +6,7 @@ serviceMesh:
   name: servicemeshoperator
   namespace: openshift-operators-redhat
   channel: stable
-  installPlanApproval: Manual
+  installPlanApproval: Automatic
   source: redhat-operators
   sourceNamespace: openshift-marketplace
   proxy:
@@ -22,7 +22,7 @@ kiali:
   name: kiali-ossm
   namespace: openshift-operators-redhat
   channel: stable
-  installPlanApproval: Manual
+  installPlanApproval: Automatic
   source: redhat-operators
   sourceNamespace: openshift-marketplace
 
@@ -31,7 +31,7 @@ elasticSearch:
   name: elasticsearch-operator
   namespace: openshift-operators-redhat
   channel: stable
-  installPlanApproval: Manual
+  installPlanApproval: Automatic
   source: redhat-operators
   sourceNamespace: openshift-marketplace
 
@@ -40,7 +40,7 @@ jeager:
   name: jaeger-product
   namespace: openshift-distributed-tracing
   channel: stable
-  installPlanApproval: Manual
+  installPlanApproval: Automatic
   source: redhat-operators
   sourceNamespace: openshift-marketplace
 

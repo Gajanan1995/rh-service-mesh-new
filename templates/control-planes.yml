@@ -2,12 +2,12 @@ apiVersion: maistra.io/v2
 kind: ServiceMeshControlPlane
 metadata:
   name: basic
-  namespace: {{ .Values.serviceMesh.controlPlane.namespace }}
+  namespace: {{ .Values.serviceMeshControlPlane.namespace }}
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/sync-wave: "4"
 spec:
-  version: {{ .Values.serviceMesh.controlPlane.version }}
+  version: {{ .Values.serviceMeshControlPlane.version }}
   security:
     dataPlane:
       mtls: true
