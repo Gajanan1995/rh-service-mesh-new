@@ -1,7 +1,7 @@
 # Default values for rh-adp.
 # This file configures operators and resources.
-ado_groups: []
- 
+ado_groups:
+  - "dev-team"
 
 # Service Mesh Operator Configuration
 serviceMesh:

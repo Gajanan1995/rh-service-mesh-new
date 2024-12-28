@@ -1,25 +1,18 @@
-# This will iterate over the namespaces defined under serviceMeshControlPlane.namespaces
-{{- range $namespace := .Values.serviceMeshControlPlane.namespaces }}
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: service-mesh-user-view
-  namespace: {{ $namespace }}  # Namespace from the range loop
+  namespace: {{ .Values.serviceMeshControlPlane.namespaces | first }} 
   annotations:
     argocd.argoproj.io/sync-wave: "5"
 subjects:
-  {{- $groups := .Values.ado_groups | default [] }}  # Ensure ado_groups is an empty list if not defined
-  {{- if $groups }}
-    {{- range $group := $groups }}
-      - kind: Group
-        apiGroup: rbac.authorization.k8s.io
-        name: {{ $group }}
-    {{- end }}
-  {{- else }}
-    # No groups to add
+  {{- range $group := .Values.ado_groups }}
+    - kind: Group
+      apiGroup: rbac.authorization.k8s.io
+      name: {{ $group }}
   {{- end }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
   name: view
-{{- end }}
+
