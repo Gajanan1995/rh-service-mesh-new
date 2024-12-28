@@ -1,8 +1,9 @@
+{{- range .Values.serviceMeshControlPlane.namespaces }}
 apiVersion: maistra.io/v2
 kind: ServiceMeshControlPlane
 metadata:
-  name: basic
-  namespace: {{ .Values.serviceMeshControlPlane.namespaces }}
+  name: basic-{{ . }} 
+  namespace: {{ . }}
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/sync-wave: "4"
@@ -110,4 +111,4 @@ spec:
           enableGrafana: false
           enableTracing: true
           enablePrometheus: true
-
+{{- end }}
