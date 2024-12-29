@@ -59,6 +59,6 @@ serviceMeshControlPlane:
       limits:
         cpu: 300m
         memory: 1Gi
-  sampling: 100
-  version: v2.3
+      sampling: 100
+  version: v2.6
 
