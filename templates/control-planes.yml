@@ -8,12 +8,12 @@ metadata:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/sync-wave: "4"
 spec:
-  version: {{ .Values.serviceMeshControlPlane.version }}
+  version: {{ $.Values.serviceMeshControlPlane.version }}
   security:
     dataPlane:
       mtls: true
   tracing:
-    sampling: {{ .Values.serviceMeshControlPlane.sampling }}
+    sampling: {{ $.Values.serviceMeshControlPlane.sampling }}
     type: Jaeger
   runtime:
     components:
@@ -68,11 +68,11 @@ spec:
       container:
         resources:
           requests:
-            cpu: {{ .Values.serviceMesh.proxy.requests.cpu }}
-            memory: {{ .Values.serviceMesh.proxy.requests.memory }}
+            cpu: {{ $.Values.serviceMeshControlPlane.resources.proxy.requests.cpu }}
+            memory: {{ $.Values.serviceMeshControlPlane.resources.proxy.requests.memory }}
           limits:
-            cpu: {{ .Values.serviceMesh.proxy.limits.cpu }}
-            memory: {{ .Values.serviceMesh.proxy.limits.memory }}
+            cpu: {{ $.Values.serviceMeshControlPlane.resources.proxy.limits.cpu }}
+            memory: {{ $.Values.serviceMeshControlPlane.resources.proxy.limits.memory }}
     injection:
       autoInject: true
   gateways:
@@ -90,11 +90,10 @@ spec:
               minReplicas: 3
   addons:
     jaeger:
-      name: {{ .Values.jeager.name }}
-
+      name: {{ $.Values.jaeger.name }}
     kiali:
       enabled: true
-      name: {{ .Values.kiali.name }}
+      name: {{ $.Values.kiali.name }}
       install:
         deployment:
           nodeSelector:
@@ -112,3 +111,4 @@ spec:
           enableTracing: true
           enablePrometheus: true
 {{- end }}
+
